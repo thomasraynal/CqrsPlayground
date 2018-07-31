@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cqrsplayground.shared", "cqrsplayground.shared\cqrsplayground.shared.csproj", "{EA7412CF-9000-4BAC-A49A-C5B8842C8578}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cqrsplayground.generator", "cqrsplayground.generator\cqrsplayground.generator.csproj", "{EDB5B3A7-EAF8-40E6-AC38-0B7723E854F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cqrsplayground.trade.service", "cqrsplayground.trade.service\cqrsplayground.trade.service.csproj", "{EB5BCD53-CF0A-413A-90E5-C0C8F1F87E69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cqrsplayground.compliance.service", "cqrsplayground.compliance.service\cqrsplayground.compliance.service.csproj", "{16BAB623-5A58-4F75-988E-56B3C6B88175}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cqrsplayground.booking.service", "cqrsplayground.booking.service\cqrsplayground.booking.service.csproj", "{DF6E0E1A-6D3B-4FCD-A826-5D79C24033E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cqrsplayground.eventemitter", "cqrsplayground.eventemitter\cqrsplayground.eventemitter.csproj", "{5C619EBB-AE8F-4A52-99A0-E262AA83466D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA7412CF-9000-4BAC-A49A-C5B8842C8578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA7412CF-9000-4BAC-A49A-C5B8842C8578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA7412CF-9000-4BAC-A49A-C5B8842C8578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA7412CF-9000-4BAC-A49A-C5B8842C8578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDB5B3A7-EAF8-40E6-AC38-0B7723E854F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDB5B3A7-EAF8-40E6-AC38-0B7723E854F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDB5B3A7-EAF8-40E6-AC38-0B7723E854F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDB5B3A7-EAF8-40E6-AC38-0B7723E854F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB5BCD53-CF0A-413A-90E5-C0C8F1F87E69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB5BCD53-CF0A-413A-90E5-C0C8F1F87E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB5BCD53-CF0A-413A-90E5-C0C8F1F87E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB5BCD53-CF0A-413A-90E5-C0C8F1F87E69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16BAB623-5A58-4F75-988E-56B3C6B88175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16BAB623-5A58-4F75-988E-56B3C6B88175}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16BAB623-5A58-4F75-988E-56B3C6B88175}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16BAB623-5A58-4F75-988E-56B3C6B88175}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF6E0E1A-6D3B-4FCD-A826-5D79C24033E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF6E0E1A-6D3B-4FCD-A826-5D79C24033E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF6E0E1A-6D3B-4FCD-A826-5D79C24033E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF6E0E1A-6D3B-4FCD-A826-5D79C24033E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C619EBB-AE8F-4A52-99A0-E262AA83466D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C619EBB-AE8F-4A52-99A0-E262AA83466D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C619EBB-AE8F-4A52-99A0-E262AA83466D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C619EBB-AE8F-4A52-99A0-E262AA83466D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {19B67591-14A4-4312-93CD-749EBD4E4DC9}
+	EndGlobalSection
+EndGlobal
