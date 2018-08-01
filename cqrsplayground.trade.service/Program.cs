@@ -1,6 +1,7 @@
 ﻿using cqrsplayground.eventemitter;
 using Microsoft.AspNetCore.Hosting;
 using System;
+using System.IO;
 
 namespace cqrsplayground.trade.service
 {
@@ -11,7 +12,6 @@ namespace cqrsplayground.trade.service
             var host = new WebHostBuilder()
                .UseKestrel()
                .UseStartup<Startup>()
-               .UseEventEmitter()
                .Build();
 
             host.Run();

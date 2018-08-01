@@ -16,7 +16,7 @@ docker rm booking
 docker network rm cqrs
 docker network create cqrs
 
-start /d "." docker run -d --name trade-event rabbitmq:3
+start /d "." docker run -it --rm --network=cqrs --name trade-event rabbitmq:3
 
 cd cqrsplayground.trade.service
 dotnet publish -c Release -o publish

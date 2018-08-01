@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using System;
 
-namespace cqrsplayground.compliance.service
+namespace cqrsplayground.compliance
 {
     class Program
     {
@@ -10,8 +10,8 @@ namespace cqrsplayground.compliance.service
         {
             var host = new WebHostBuilder()
                .UseKestrel()
+               .UseUrls("http://locahost:5001")
                .UseStartup<Startup>()
-               .UseEventEmitter()
                .Build();
 
             host.Run();

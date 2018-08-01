@@ -10,8 +10,8 @@ namespace cqrsplayground.booking.service
         {
             var host = new WebHostBuilder()
                .UseKestrel()
+               .UseUrls("http://locahost:5002")
                .UseStartup<Startup>()
-               .UseEventEmitter()
                .Build();
 
             host.Run();

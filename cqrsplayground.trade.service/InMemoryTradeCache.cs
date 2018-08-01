@@ -1,4 +1,5 @@
 ﻿using cqrsplayground.shared;
+using Refit;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -17,22 +18,23 @@ namespace cqrsplayground.trade.service
             _repository = new ConcurrentDictionary<Guid, Trade>();
         }
 
-        public Task<TradeCreationResult> Create(TradeCreationDemand tradeCreationDemand)
+        public Task<TradeCreationResult> Create(TradeCreationDto tradeCreation)
         {
             var id = Guid.NewGuid();
 
-            _repository.AddOrUpdate(id, new Trade()
+            var trade = new Trade()
             {
-                Asset = tradeCreationDemand.Asset,
-                Counterpary = tradeCreationDemand.Counterpary,
-                Currency = tradeCreationDemand.Currency,
-                Nominal = tradeCreationDemand.Nominal,
-                Price = tradeCreationDemand.Price,
-                Status = TradeStatus.Created,
-                Way = tradeCreationDemand.Way,
+                Asset = tradeCreation.Asset,
+                Counterpary = tradeCreation.Counterpary,
+                Currency = tradeCreation.Currency,
+                Nominal = tradeCreation.Nominal,
+                Price = tradeCreation.Price,
+                Status = TradeStatus.None,
+                Way = tradeCreation.Way,
                 TradeId = id
+            };
 
-            }, null);
+            _repository.AddOrUpdate(id, trade, (key, oldValue) => trade);
 
             return Task.FromResult(new TradeCreationResult() { TradeId = id });
         }
@@ -45,6 +47,12 @@ namespace cqrsplayground.trade.service
         public Task<IEnumerable<Trade>> GetAll()
         {
             return Task.FromResult(_repository.Values.AsEnumerable());
+        }
+
+        public Task Update(Trade trade)
+        {
+            _repository.AddOrUpdate(trade.TradeId, trade, (key, oldValue) => trade);
+            return Task.CompletedTask;
         }
     }
 }

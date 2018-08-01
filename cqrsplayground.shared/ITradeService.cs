@@ -8,8 +8,10 @@ namespace cqrsplayground.shared
 {
     public interface ITradeService
     {
+        Task Update(Trade trade);
+
         [Put("/trades")]
-        Task<TradeCreationResult> Create([Body] TradeCreationDemand tradeCreationDemand);
+        Task<TradeCreationResult> Create([Body] TradeCreationDto tradeCreation);
         [Get("/trades/{tradeId}")]
         Task<Trade> Get(Guid tradeId);
         [Get("/trades")]

@@ -25,26 +25,15 @@ namespace cqrsplayground.generator
     {
         private static Random _rand;
 
-        public static T Random<T>(this IEnumerable<T> enumerable)
-        {
-            if (enumerable == null)
-            {
-                throw new ArgumentNullException(nameof(enumerable));
-            }
-
-
-            var list = enumerable as IList<T> ?? enumerable.ToList();
-            return list.Count == 0 ? default(T) : list[_rand.Next(0, list.Count)];
-        }
 
         private static IEnumerable<string> _counterparties = new[]
-     {
+        {
                   "Amundi Asset Management",
                   "Natixis Global Asset Management",
                   "AXA Investment Managers",
                   "BNP Paribas Investment Partners",
                   "La Banque Postale Asset Management"
-                };
+        };
 
         private static IEnumerable<Asset> _assets =
          new[]
@@ -102,7 +91,7 @@ namespace cqrsplayground.generator
 
                 var asset = _assets.Random();
 
-                var tradeCreation = new TradeCreationDemand()
+                var tradeCreation = new TradeCreationDto()
                 {
                     Asset = asset.Name,
                     Way = _rand.Next(0, 2) == 0 ? TradeWay.Sell : TradeWay.Buy,
@@ -115,7 +104,7 @@ namespace cqrsplayground.generator
 
                 log.Information($"{tradeCreation}");
 
-               client.Create(tradeCreation);
+                client.Create(tradeCreation).Wait();
 
             }
         }

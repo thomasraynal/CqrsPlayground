@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace cqrsplayground.shared
 {
-    public interface ITradeEventEmitter
+    public class TradeUpdateResult
     {
-        Task Emit(ITradeEvent @event);
+        public Guid TradeId { get; set; }
     }
 }

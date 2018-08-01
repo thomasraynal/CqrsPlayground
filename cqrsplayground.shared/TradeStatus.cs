@@ -6,7 +6,9 @@ namespace cqrsplayground.shared
 {
     public enum TradeStatus
     {
+        None,
         Created,
+        Acknowledged,
         Validated,
         Rejected,
         Booked

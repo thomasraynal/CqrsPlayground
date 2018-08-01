@@ -4,7 +4,7 @@ using System.Text;
 
 namespace cqrsplayground.shared
 {
-    public class TradeCreationDemand
+    public class TradeCreationDto
     {
         public double Nominal { get; set; }
         public String Asset { get; set; }
