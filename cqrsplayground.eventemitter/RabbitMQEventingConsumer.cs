@@ -1,4 +1,5 @@
-﻿using RabbitMQ.Client;
+﻿using cqrsplayground.shared;
+using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System;
 using System.Collections.Generic;

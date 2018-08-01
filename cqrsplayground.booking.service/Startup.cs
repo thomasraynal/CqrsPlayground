@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using cqrsplayground.eventemitter;
+using cqrsplayground.shared;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -8,29 +10,15 @@ using System.Text;
 
 namespace cqrsplayground.booking.service
 {
-    public class Startup
+    public class Startup : ServiceStartupBase
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IHostingEnvironment env) : base(env)
         {
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        protected override void ConfigureServicesInternal(IServiceCollection services)
         {
-            services.AddMvc();
-
-            services.AddSingleton<TradeBookingService, TradeBookingService>();
-
-        }
-
-        public void Configure(IApplicationBuilder app, IServiceProvider serviceProvider, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
-            loggerFactory.AddConsole();
-            loggerFactory.AddDebug();
-
-            //initialize
-            var tradeComplianceService = serviceProvider.GetService<TradeBookingService>();
-
-            app.UseMvc();
+            services.AddSingleton<ITradeEventProcessor, TradeBookingServiceEventProcessor>();
         }
     }
 }

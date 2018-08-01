@@ -2,33 +2,30 @@
 using cqrsplayground.shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using RabbitMQ.Client.Events;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace cqrsplayground.trade.service
 {
-    public class Startup
+    public class Startup: ServiceStartupBase
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IHostingEnvironment env): base(env)
         {
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        protected override void ConfigureServicesInternal(IServiceCollection services)
         {
+            services.AddSingleton<ITradeEventProcessor, TradeServiceEventProcessor>();
             services.AddSingleton<ITradeService, InMemoryTradeCache>();
-            services.AddMvc();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
-            loggerFactory.AddConsole();
-            loggerFactory.AddDebug();
-
-            app.UseMvc();
-        }
     }
 }

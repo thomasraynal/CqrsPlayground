@@ -6,5 +6,6 @@ namespace cqrsplayground.shared
     {
          Guid TradeId { get; set; }
          String Type { get; }
+         void Handle(Trade trade);
     }
 }

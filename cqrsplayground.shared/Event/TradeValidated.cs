@@ -1,13 +1,15 @@
-﻿using System;
+﻿using cqrsplayground.shared.Event;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace cqrsplayground.shared
 {
-    public class TradeValidated : ITradeEvent
+    public class TradeValidated : EventBase
     {
-        public Guid TradeId { get; set; }
-        public Guid ComplianceCheckId { get; set; }
-        public string Type => typeof(TradeValidated).ToString();
+        public override void Handle(Trade trade)
+        {
+            trade.Status = TradeStatus.Validated;
+        }
     }
 }

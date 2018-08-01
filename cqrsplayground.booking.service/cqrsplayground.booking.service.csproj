@@ -16,4 +16,10 @@
     <ProjectReference Include="..\cqrsplayground.shared\cqrsplayground.shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update=".dockerignore">
+      <DependentUpon>Dockerfile</DependentUpon>
+    </None>
+  </ItemGroup>
+
 </Project>

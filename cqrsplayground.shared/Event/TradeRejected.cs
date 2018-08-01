@@ -1,12 +1,15 @@
-﻿using System;
+﻿using cqrsplayground.shared.Event;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace cqrsplayground.shared
 {
-    public class TradeRejected : ITradeEvent
+    public class TradeRejected : EventBase
     {
-        public Guid TradeId { get; set; }
-        public string Type => typeof(TradeRejected).ToString();
+        public override void Handle(Trade trade)
+        {
+            trade.Status = TradeStatus.Rejected;
+        }
     }
 }

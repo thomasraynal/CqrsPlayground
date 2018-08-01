@@ -7,6 +7,10 @@ namespace cqrsplayground.shared
 {
     public interface ITradeEventProcessor
     {
-        IObservable<ITradeEvent> OnNewEvent { get; }
+        IEnumerable<Type> AllowedEvents { get; }
+        Task OnEvent(ITradeEvent @event);
+        Task Emit(ITradeEvent @event);
+        void Subscribe();
+        void Unsubscribe();
     }
 }

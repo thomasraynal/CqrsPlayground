@@ -1,13 +1,18 @@
-﻿using System;
+﻿using cqrsplayground.shared.Event;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace cqrsplayground.shared
 {
-    public class TradeBooked : ITradeEvent
+    public class TradeBooked : EventBase
     {
-        public Guid TradeId { get; set; }
         public String TradeBook { get; set; }
-        public string Type => typeof(TradeBooked).ToString();
+
+        public override void Handle(Trade trade)
+        {
+            trade.Status = TradeStatus.Booked;
+            trade.Book = TradeBook;
+        }
     }
 }
