@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using RabbitMQ.Client.Events;
+using Steeltoe.Discovery.Client;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -21,11 +22,23 @@ namespace cqrsplayground.trade.service
         {
         }
 
+        protected override void BuidConfigurationInternal(IConfigurationBuilder builder)
+        {
+            builder.AddJsonFile("servicesettings.json", optional: false, reloadOnChange: true);
+        }
+
+        protected override void ConfigureInternal(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            app.UseDiscoveryClient();
+        }
+
         protected override void ConfigureServicesInternal(IServiceCollection services)
         {
             services.AddSingleton<ITradeEventProcessor, TradeServiceEventProcessor>();
             services.AddSingleton<ITradeService, InMemoryTradeCache>();
+            services.AddDiscoveryClient(Configuration);
         }
+
 
     }
 }

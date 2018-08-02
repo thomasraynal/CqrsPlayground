@@ -1,41 +1,32 @@
-﻿using cqrsplayground.shared;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using Steeltoe.Discovery.Client;
+using Steeltoe.Discovery.Eureka;
+using Steeltoe.Discovery.Eureka.Transport;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 
-namespace cqrsplayground.eventemitter
+namespace cqrsplayground.inventory
 {
-    public abstract class ServiceStartupBase
+    public class Startup
     {
         public IConfigurationRoot Configuration { get; }
 
-        public ServiceStartupBase(IHostingEnvironment env)
+        public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("commonsettings.json", optional: false, reloadOnChange: true);
-
-            BuidConfigurationInternal(builder);
+                .AddJsonFile("servicesettings.json", optional: false, reloadOnChange: true);
 
             this.Configuration = builder.Build();
-        }
-
-        protected virtual void BuidConfigurationInternal(IConfigurationBuilder services)
-        {
-
-        }
-
-        protected virtual void ConfigureServicesInternal (IServiceCollection services)
-        {
-    
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -43,7 +34,6 @@ namespace cqrsplayground.eventemitter
             services.AddOptions();
 
             services
-                .AddEventProcessor()
                 .AddMvc()
                 .AddJsonOptions(options =>
                 {
@@ -51,16 +41,13 @@ namespace cqrsplayground.eventemitter
                     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 });
 
+        
+            services.AddTransient<IEurekaHttpClient, ServiceEurekaHttpClient>();
             services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton<IInventoryService,InventoryClient>();
 
-            services.Configure<RabbitMQConfiguration>(Configuration.GetSection(ServiceConstants.RabbitMQConfig));
+            services.AddDiscoveryClient(Configuration);
 
-            ConfigureServicesInternal(services);
-
-        }
-
-        protected virtual void ConfigureInternal(IApplicationBuilder app, IHostingEnvironment env)
-        {
 
         }
 
@@ -69,11 +56,8 @@ namespace cqrsplayground.eventemitter
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
 
+            app.UseDiscoveryClient();
             app.UseMvc();
-
-            app.UseEventProcessor();
-
-            ConfigureInternal(app, env);
         }
     }
 }

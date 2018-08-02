@@ -7,12 +7,6 @@
     "booking": "booking",
     "trade": "trade"
   },
-  //"PubnubOptions": {
-  //  "PublishKey": "override-me",
-  //  "SubscribeKey": "override-me",
-  //  "StartupChannel": "startup",
-  //  "ProximityEventChannel": "proximityevents"
-  //},
   "services": {
     "trades": "http://localhost:5000",
     "events": "http://localhost:5672"

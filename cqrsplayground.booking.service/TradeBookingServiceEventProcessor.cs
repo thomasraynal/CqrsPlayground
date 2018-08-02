@@ -25,7 +25,7 @@ namespace cqrsplayground.booking.service
 
             _tradeBooks = new List<String>()
             {
-                "DESK EQ",
+                "DESK EQU",
                 "DESK DIV",
                 "DESK FIX"
             };
