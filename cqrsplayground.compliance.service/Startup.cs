@@ -27,7 +27,10 @@ namespace cqrsplayground.compliance
         {
             services.AddSingleton<ITradeEventProcessor, TradeComplianceServiceEventProcessor>();
             services.AddDiscoveryClient(Configuration);
+        }
+
         protected override void ConfigureInternal(IApplicationBuilder app, IHostingEnvironment env)
+        { 
             app.UseDiscoveryClient();
         }
     }
