@@ -24,10 +24,10 @@ namespace cqrsplayground.booking.service
             services.AddSingleton<ITradeEventProcessor, TradeBookingServiceEventProcessor>();
             services.AddDiscoveryClient(Configuration);
         }
-
         protected override void ConfigureInternal(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseDiscoveryClient();
         }
+
     }
 }

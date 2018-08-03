@@ -23,15 +23,11 @@ namespace cqrsplayground.compliance
             builder.AddJsonFile("servicesettings.json", optional: false, reloadOnChange: true);
         }
 
-
         protected override void ConfigureServicesInternal(IServiceCollection services)
         {
             services.AddSingleton<ITradeEventProcessor, TradeComplianceServiceEventProcessor>();
             services.AddDiscoveryClient(Configuration);
-        }
-
         protected override void ConfigureInternal(IApplicationBuilder app, IHostingEnvironment env)
-        {
             app.UseDiscoveryClient();
         }
     }
