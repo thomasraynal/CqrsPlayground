@@ -1,9 +1,12 @@
-﻿using cqrsplayground.shared;
+﻿using cqrsplayground.authentication;
+using cqrsplayground.shared;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System;
@@ -42,18 +45,20 @@ namespace cqrsplayground.eventemitter
         {
             services.AddOptions();
 
-            services
-                .AddEventProcessor()
-                .AddMvc()
+            services.AddEventProcessor();
+
+            services.AddAuthenticationWorkflow(Configuration);
+
+            services.AddSingleton<IConfiguration>(Configuration);
+
+            services.Configure<RabbitMQConfiguration>(Configuration.GetSection(ServiceConstants.RabbitMQConfig));
+
+            services.AddMvc()
                 .AddJsonOptions(options =>
                 {
                     options.SerializerSettings.Converters.Add(new StringEnumConverter());
                     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 });
-
-            services.AddSingleton<IConfiguration>(Configuration);
-
-            services.Configure<RabbitMQConfiguration>(Configuration.GetSection(ServiceConstants.RabbitMQConfig));
 
             ConfigureServicesInternal(services);
 

@@ -1,8 +1,12 @@
 ﻿{
   "spring": {
     "application": {
-      "name" : "compliance"
+      "name": "compliance"
     }
+  },
+  "identity": {
+    "key": "cqrsplayground.compliance.service",
+    "token": "__cqrsplayground.compliance.service.token__"
   },
   "eureka": {
     "client": {
@@ -12,7 +16,12 @@
       "validate_certificates": false
     },
     "instance": {
-      "port": 5001
+      "appname": "compliance",
+      "nonSecurePort": 5002,
+      "port": 5002,
+      "instanceId": "localhost:compliance:5002",
+      "leaseRenewalIntervalInSeconds": 5,
+      "leaseExpirationDurationInSeconds": 10
     }
   }
 }

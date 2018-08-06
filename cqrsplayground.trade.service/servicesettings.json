@@ -1,8 +1,12 @@
 ﻿{
   "spring": {
     "application": {
-      "name" : "trades"
+      "name": "trades"
     }
+  },
+  "identity": {
+    "key": "cqrsplayground.trade.service",
+    "token": "__cqrsplayground.trade.service.token__"
   },
   "eureka": {
     "client": {
@@ -19,14 +23,5 @@
       "leaseRenewalIntervalInSeconds": 5,
       "leaseExpirationDurationInSeconds": 10
     }
-    },
-    "Logging": {
-        "IncludeScopes": false,
-        "LogLevel": {
-            "Default": "Debug",
-            "System": "Debug",
-            "Microsoft": "Debug",
-            "Steeltoe": "Debug"
-        }
-    }
+  }
 }

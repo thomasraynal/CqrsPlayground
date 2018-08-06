@@ -4,6 +4,7 @@ using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 
 namespace cqrsplayground.generator
@@ -77,7 +78,9 @@ namespace cqrsplayground.generator
 
         static void Main(string[] args)
         {
-            var client = RestService.For<ITradeService>(ServiceConstants.TradeServiceUrl);
+            var provider = new AuthenticatedClientProvider();
+
+            var client = provider.GetClientFor<ITradeService>(Assembly.GetExecutingAssembly().FullName.Split(",").First(), ServiceConstants.TradeServiceUrl);
 
             _rand = new Random();
 

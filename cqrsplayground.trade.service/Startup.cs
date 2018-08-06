@@ -1,10 +1,12 @@
 ﻿using cqrsplayground.eventemitter;
 using cqrsplayground.shared;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using RabbitMQ.Client.Events;
@@ -36,11 +38,7 @@ namespace cqrsplayground.trade.service
         protected override void ConfigureServicesInternal(IServiceCollection services)
         {
             services.AddSingleton<ITradeEventProcessor, TradeServiceEventProcessor>();
-
-            var client = RestService.For<ITradeService>(ServiceConstants.TradeRepositoryUrl);
-
-            services.AddSingleton(client);
-
+            services.AddHttpClientFor<ITradeService>(ServiceConstants.TradeRepositoryUrl);
             services.AddDiscoveryClient(Configuration);
         }
 

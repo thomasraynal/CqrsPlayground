@@ -7,6 +7,9 @@ namespace cqrsplayground.shared
     public static class ServiceConstants
     {
         public static String TradeServiceUrl = "http://localhost:5000";
+        public static String BookingServiceUrl = "http://localhost:5001";
+        public static String ComplianceServiceUrl = "http://localhost:5002";
+
         public static String TradeRepositoryUrl = "http://localhost:5005";
 
         //public static String TradeEventServiceUrl = "http://localhost:5672";

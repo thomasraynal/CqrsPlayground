@@ -1,4 +1,5 @@
 ﻿using cqrsplayground.eventemitter;
+using cqrsplayground.shared;
 using Microsoft.AspNetCore.Hosting;
 using System;
 
@@ -10,7 +11,7 @@ namespace cqrsplayground.compliance
         {
             var host = new WebHostBuilder()
                .UseKestrel()
-               .UseUrls("http://locahost:5001")
+               .UseUrls(ServiceConstants.ComplianceServiceUrl)
                .UseStartup<Startup>()
                .Build();
 

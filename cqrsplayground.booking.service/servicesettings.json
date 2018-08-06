@@ -1,8 +1,12 @@
 ﻿{
   "spring": {
     "application": {
-      "name" : "booking"
+      "name": "booking"
     }
+  },
+  "identity": {
+    "key": "cqrsplayground.booking.service",
+    "token": "__cqrsplayground.booking.service.token__"
   },
   "eureka": {
     "client": {
@@ -12,7 +16,12 @@
       "validate_certificates": false
     },
     "instance": {
-      "port": 5000
+      "appname": "booking",
+      "nonSecurePort": 5001,
+      "port": 5001,
+      "instanceId": "localhost:booking:5001",
+      "leaseRenewalIntervalInSeconds": 5,
+      "leaseExpirationDurationInSeconds": 10
     }
   }
 }
