@@ -8,23 +8,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
-    <PackageReference Include="Refit" Version="4.6.30" />
-    <PackageReference Include="Steeltoe.Discovery.ClientCore" Version="2.0.1" />
-    <PackageReference Include="Steeltoe.Discovery.EurekaBase" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\cqrsplayground.eventemitter\cqrsplayground.eventemitter.csproj" />
     <ProjectReference Include="..\cqrsplayground.shared\cqrsplayground.shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
-    </None>
-    <None Update="servicesettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

@@ -4,29 +4,27 @@ using Microsoft.Extensions.Logging;
 using Refit;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace cqrsplayground.trade.service
 {
     [Route("trades")]
-    public class TradeService : ControllerBase, ITradeService
+    public class TradeRepository : ControllerBase, ITradeService
     {
-        private ILogger<TradeService> _logger;
-        private ITradeEventProcessor _tradeEventProcessor;
+        private ILogger<TradeRepository> _logger;
         private ITradeService _repository;
     
-        public TradeService(ILoggerFactory loggerFactory, ITradeService repository, ITradeEventProcessor tradeEventProcessor)
+        public TradeRepository(ILoggerFactory loggerFactory, ITradeService repository)
         {
-            _logger = loggerFactory.CreateLogger<TradeService>();
-            _tradeEventProcessor = tradeEventProcessor;
+            _logger = loggerFactory.CreateLogger<TradeRepository>();
             _repository = repository;
         }
 
         [HttpPut]
         public async Task<TradeCreationResult> Create([FromBody] TradeCreationDto tradeCreationDemand)
         {
-
             var result = await _repository.Create(tradeCreationDemand);
 
             var @event = new TradeCreated()
@@ -34,10 +32,7 @@ namespace cqrsplayground.trade.service
                 TradeId = result.TradeId
             };
 
-            await _tradeEventProcessor.Emit(@event);
-
             return result;
-
         }
 
         [HttpGet("{tradeId}")]
@@ -52,9 +47,10 @@ namespace cqrsplayground.trade.service
             return await _repository.GetAll();
         }
 
-        public Task Update([FromBody] Trade trade)
+        [HttpPatch]
+        public async Task Update([FromBody]  Trade trade)
         {
-            throw new NotImplementedException();
+            await _repository.Update(trade);
         }
     }
 }

@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cqrsplayground.booking.serv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cqrsplayground.eventemitter", "cqrsplayground.eventemitter\cqrsplayground.eventemitter.csproj", "{5C619EBB-AE8F-4A52-99A0-E262AA83466D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cqrsplayground.inventory", "cqrsplayground.inventory\cqrsplayground.inventory.csproj", "{EFEE4BBE-E5CA-4E94-AD3F-8FC444C11C88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cqrsplayground.inventory", "cqrsplayground.inventory\cqrsplayground.inventory.csproj", "{EFEE4BBE-E5CA-4E94-AD3F-8FC444C11C88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cqrsplayground.trade.repository", "cqrsplayground.trade.repository\cqrsplayground.trade.repository.csproj", "{A93F2394-7BBF-4E46-A607-BE582187BA66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{EFEE4BBE-E5CA-4E94-AD3F-8FC444C11C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFEE4BBE-E5CA-4E94-AD3F-8FC444C11C88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFEE4BBE-E5CA-4E94-AD3F-8FC444C11C88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A93F2394-7BBF-4E46-A607-BE582187BA66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A93F2394-7BBF-4E46-A607-BE582187BA66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A93F2394-7BBF-4E46-A607-BE582187BA66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A93F2394-7BBF-4E46-A607-BE582187BA66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

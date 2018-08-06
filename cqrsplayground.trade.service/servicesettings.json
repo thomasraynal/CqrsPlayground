@@ -12,7 +12,21 @@
       "validate_certificates": false
     },
     "instance": {
-      "port": 5555
+      "appname": "trades",
+      "nonSecurePort": 5000,
+      "port": 5000,
+      "instanceId": "localhost:trades:5000",
+      "leaseRenewalIntervalInSeconds": 5,
+      "leaseExpirationDurationInSeconds": 10
     }
-  }
+    },
+    "Logging": {
+        "IncludeScopes": false,
+        "LogLevel": {
+            "Default": "Debug",
+            "System": "Debug",
+            "Microsoft": "Debug",
+            "Steeltoe": "Debug"
+        }
+    }
 }

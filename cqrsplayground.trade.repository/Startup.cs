@@ -1,39 +1,35 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using cqrsplayground.shared;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using Steeltoe.Common.Discovery;
-using Steeltoe.Discovery.Client;
-using Steeltoe.Discovery.Eureka;
-using Steeltoe.Discovery.Eureka.Transport;
 using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
+using System.IO;
 using System.Text;
 
-namespace cqrsplayground.inventory
+namespace cqrsplayground.trade.service
 {
     public class Startup
     {
+
         public IConfigurationRoot Configuration { get; }
 
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("servicesettings.json", optional: false, reloadOnChange: true);
+                .AddJsonFile("commonsettings.json", optional: false, reloadOnChange: true);
 
             this.Configuration = builder.Build();
         }
 
+
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddOptions();
-
             services
                 .AddMvc()
                 .AddJsonOptions(options =>
@@ -42,15 +38,8 @@ namespace cqrsplayground.inventory
                     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 });
 
-        
-            services.AddTransient<IEurekaHttpClient, ServiceEurekaHttpClient>();
-            services.AddTransient<IDiscoveryClient, EurekaDiscoveryClient>();
             services.AddSingleton<IConfiguration>(Configuration);
-            services.AddSingleton<IInventoryService,InventoryClient>();
-
-            services.AddDiscoveryClient(Configuration);
-
-
+            services.AddSingleton<ITradeService, InMemoryTradeCache>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -58,8 +47,8 @@ namespace cqrsplayground.inventory
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
 
-            app.UseDiscoveryClient();
             app.UseMvc();
         }
+
     }
 }

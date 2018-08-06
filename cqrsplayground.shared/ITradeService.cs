@@ -8,8 +8,9 @@ namespace cqrsplayground.shared
 {
     public interface ITradeService
     {
-        Task Update(Trade trade);
-
+        [Patch("/trades")]
+        [Headers("Content-Type: application/json")]
+        Task Update([Body] Trade trade);
         [Put("/trades")]
         Task<TradeCreationResult> Create([Body] TradeCreationDto tradeCreation);
         [Get("/trades/{tradeId}")]

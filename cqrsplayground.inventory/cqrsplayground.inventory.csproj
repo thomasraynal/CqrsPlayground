@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\cqrsplayground.shared\cqrsplayground.shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="servicesettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
