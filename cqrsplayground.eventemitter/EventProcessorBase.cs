@@ -103,21 +103,6 @@ namespace cqrsplayground.eventemitter
             {
                 using (var channel = connection.CreateModel())
                 {
-                    //channel.ExchangeDeclare(_exchangeName, "fanout");
-
-                    //channel.QueueDeclare(
-                    //    queue: EventServiceName,
-                    //    durable: false,
-                    //    exclusive: false,
-                    //    autoDelete: false,
-                    //    arguments: null
-                    //);
-
-                    //channel.QueueBind(
-                    //    queue: EventServiceName,
-                    //    exchange: _exchangeName,
-                    //    routingKey: "");
-
                     var payload = JsonConvert.SerializeObject(@event);
                     var body = Encoding.UTF8.GetBytes(payload);
 

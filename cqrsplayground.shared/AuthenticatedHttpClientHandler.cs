@@ -24,9 +24,10 @@ namespace cqrsplayground.shared
             var auth = request.Headers.Authorization;
             if (null == _current || _current.HasExpired)
             {
-                var token = await getToken();
-                request.Headers.Authorization = new AuthenticationHeaderValue(JwtBearerDefaults.AuthenticationScheme, token.Token);
+                _current = await getToken();
             }
+
+            request.Headers.Authorization = new AuthenticationHeaderValue(JwtBearerDefaults.AuthenticationScheme, _current.Token);
 
             return await base.SendAsync(request, cancellationToken);
         }

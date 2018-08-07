@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using cqrsplayground.shared;
+using Microsoft.AspNetCore.Hosting;
 using System;
 
-namespace cqrsplayground.inventory
+namespace cqrsplayground.gateway
 {
     class Program
     {
@@ -9,7 +10,7 @@ namespace cqrsplayground.inventory
         {
             var host = new WebHostBuilder()
               .UseKestrel()
-              .UseUrls("http://locahost:5005")
+              .Setup(args)
               .UseStartup<Startup>()
               .Build();
 

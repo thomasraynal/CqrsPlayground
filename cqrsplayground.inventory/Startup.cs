@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using cqrsplayground.shared;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,8 +15,9 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace cqrsplayground.inventory
+namespace cqrsplayground.gateway
 {
     public class Startup
     {
@@ -32,9 +34,8 @@ namespace cqrsplayground.inventory
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddOptions();
-
             services
+                .AddOptions()
                 .AddMvc()
                 .AddJsonOptions(options =>
                 {
@@ -47,10 +48,9 @@ namespace cqrsplayground.inventory
             services.AddTransient<IDiscoveryClient, EurekaDiscoveryClient>();
             services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton<IInventoryService,InventoryClient>();
+            services.AddSingleton<IAuthenticatedClientProvider, AuthenticatedClientProvider>();
 
             services.AddDiscoveryClient(Configuration);
-
-
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

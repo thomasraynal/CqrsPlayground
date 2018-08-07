@@ -11,7 +11,7 @@ namespace cqrsplayground.compliance
         {
             var host = new WebHostBuilder()
                .UseKestrel()
-               .UseUrls(ServiceConstants.ComplianceServiceUrl)
+               .Setup(args)
                .UseStartup<Startup>()
                .Build();
 

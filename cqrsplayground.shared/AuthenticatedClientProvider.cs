@@ -19,7 +19,7 @@ namespace cqrsplayground.shared
             using (var client = new HttpClient())
             {
                 var response = await client.GetAsync($"{endpoint}/{authenticationRoute}/{consumerKey}");
-                if (response.StatusCode != HttpStatusCode.OK) throw new UnauthorizedAccessException(typeof(TService).ToString());
+                if (response.StatusCode != HttpStatusCode.OK) throw new Exception(response.ToString());
                 var token = JsonConvert.DeserializeObject<ServiceToken>(await response.Content.ReadAsStringAsync());
                 return token;
             }

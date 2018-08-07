@@ -4,31 +4,16 @@ using System.Text;
 
 namespace cqrsplayground.shared
 {
+    //refacto: inject hosting parameters via env variables
     public static class ServiceConstants
     {
-        public static String TradeServiceUrl = "http://localhost:5000";
-        public static String BookingServiceUrl = "http://localhost:5001";
-        public static String ComplianceServiceUrl = "http://localhost:5002";
-
-        public static String TradeRepositoryUrl = "http://localhost:5005";
-
-        //public static String TradeEventServiceUrl = "http://localhost:5672";
-        //public static String RabbitMQUri = "amqp://localhost:5672/";
-
-        //public static String RabbitMQComplianceQueue = "compliance";
-        //public static String RabbitMQBookingQueue = "booking";
+        public static String TradeRepositoryUrl = "http://localhost:5003";
+        public static String TradeServiceGatewayUrl = "http://localhost:5004";
 
         public static String RabbitMQConfig = "rabbitmq";
-            
         public static String TradeEventService = "trade";
         public static String BookingEventService = "booking";
         public static String ComplianceEventService = "compliance";
-
         public static string EventExchange = "events";
-
-        //public static String TradeServiceUrl = "http://trades";
-        //public static String TradeEventServiceUrl = "http://trade-event:5672";
-        //public static String RabbitMQUri = "amqp://trade-event:5672/";
-        //public static String RabbitMQQueue = "trades";
     }
 }

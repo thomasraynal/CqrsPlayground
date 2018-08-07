@@ -1,5 +1,6 @@
 ﻿using cqrsplayground.authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -23,11 +24,17 @@ namespace cqrsplayground.shared
             where IService: class
         {
             var provider = new AuthenticatedClientProvider();
-            var client = provider.GetClientFor<IService>(targetServiceKey, ServiceConstants.TradeServiceUrl);
+            var client = provider.GetClientFor<IService>(targetServiceKey, endpoint);
             services.AddSingleton(client);
             return services;
         }
 
+        public static IApplicationBuilder AddExceptionHandler(this IApplicationBuilder app)
+        {
+            app.UseMiddleware(typeof(ErrorHandlingMiddleware));
+            return app;
+        }
+        
         public static IServiceCollection AddAuthenticationWorkflow(this IServiceCollection services, IConfiguration configuration)
         {
 

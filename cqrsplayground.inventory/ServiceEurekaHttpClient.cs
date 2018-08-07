@@ -9,7 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 
-namespace cqrsplayground.inventory
+namespace cqrsplayground.gateway
 {
     public class ServiceEurekaHttpClient : EurekaHttpClient
     {

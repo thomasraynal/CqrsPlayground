@@ -21,15 +21,6 @@ namespace cqrsplayground.trade.service
 {
     public class Startup: ServiceStartupBase
     {
-        public Startup(IHostingEnvironment env): base(env)
-        {
-        }
-
-        protected override void BuidConfigurationInternal(IConfigurationBuilder builder)
-        {
-            builder.AddJsonFile("servicesettings.json", optional: false, reloadOnChange: true);
-        }
-
         protected override void ConfigureInternal(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseDiscoveryClient();
@@ -41,7 +32,5 @@ namespace cqrsplayground.trade.service
             services.AddHttpClientFor<ITradeService>(ServiceConstants.TradeRepositoryUrl);
             services.AddDiscoveryClient(Configuration);
         }
-
-
     }
 }

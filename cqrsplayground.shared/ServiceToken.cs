@@ -15,7 +15,7 @@ namespace cqrsplayground.shared
         {
             get
             {
-                return Expiration <= DateTime.Now.Ticks;
+                return Expiration <= DateTime.UtcNow.Ticks;
             }
         }
     }

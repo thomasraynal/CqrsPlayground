@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace cqrsplayground.inventory
+namespace cqrsplayground.gateway
 {
     [Route("inventory")]
     public class InventoryService : ControllerBase, IInventoryService

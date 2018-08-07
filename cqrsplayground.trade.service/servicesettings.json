@@ -1,9 +1,4 @@
 ﻿{
-  "spring": {
-    "application": {
-      "name": "trades"
-    }
-  },
   "identity": {
     "key": "cqrsplayground.trade.service",
     "token": "__cqrsplayground.trade.service.token__"
@@ -16,10 +11,10 @@
       "validate_certificates": false
     },
     "instance": {
-      "appname": "trades",
+      "appname": "trade",
       "nonSecurePort": 5000,
+      "hostName": "localhost",
       "port": 5000,
-      "instanceId": "localhost:trades:5000",
       "leaseRenewalIntervalInSeconds": 5,
       "leaseExpirationDurationInSeconds": 10
     }

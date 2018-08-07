@@ -1,9 +1,4 @@
 ﻿{
-  "spring": {
-    "application": {
-      "name": "compliance"
-    }
-  },
   "identity": {
     "key": "cqrsplayground.compliance.service",
     "token": "__cqrsplayground.compliance.service.token__"
@@ -18,8 +13,8 @@
     "instance": {
       "appname": "compliance",
       "nonSecurePort": 5002,
+      "hostName": "localhost",
       "port": 5002,
-      "instanceId": "localhost:compliance:5002",
       "leaseRenewalIntervalInSeconds": 5,
       "leaseExpirationDurationInSeconds": 10
     }

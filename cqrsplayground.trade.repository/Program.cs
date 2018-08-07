@@ -12,7 +12,7 @@ namespace cqrsplayground.trade.repository
             var host = new WebHostBuilder()
              .UseKestrel()
              .UseStartup<Startup>()
-             .UseUrls(ServiceConstants.TradeRepositoryUrl)
+             .Setup(args)
              .Build();
 
             host.Run();

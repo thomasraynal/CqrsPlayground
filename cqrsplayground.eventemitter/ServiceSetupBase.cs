@@ -12,48 +12,31 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace cqrsplayground.eventemitter
 {
     public abstract class ServiceStartupBase
     {
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; private set; }
 
-        public ServiceStartupBase(IHostingEnvironment env)
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("commonsettings.json", optional: false, reloadOnChange: true);
-
-            BuidConfigurationInternal(builder);
-
-            this.Configuration = builder.Build();
-        }
-
-        protected virtual void BuidConfigurationInternal(IConfigurationBuilder services)
+        protected virtual void ConfigureServicesInternal(IServiceCollection services)
         {
 
-        }
-
-        protected virtual void ConfigureServicesInternal (IServiceCollection services)
-        {
-    
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddOptions();
 
-            services.AddEventProcessor();
+            Configuration = (IConfiguration)services.First(service => service.ServiceType == typeof(IConfiguration)).ImplementationInstance;
 
-            services.AddAuthenticationWorkflow(Configuration);
-
-            services.AddSingleton<IConfiguration>(Configuration);
-
-            services.Configure<RabbitMQConfiguration>(Configuration.GetSection(ServiceConstants.RabbitMQConfig));
-
-            services.AddMvc()
+            services
+                .AddOptions()
+                .AddEventProcessor()
+                .AddAuthenticationWorkflow(Configuration)
+                .Configure<RabbitMQConfiguration>(Configuration.GetSection(ServiceConstants.RabbitMQConfig))
+                .AddMvc()
                 .AddJsonOptions(options =>
                 {
                     options.SerializerSettings.Converters.Add(new StringEnumConverter());
@@ -74,11 +57,12 @@ namespace cqrsplayground.eventemitter
             loggerFactory.AddConsole();
             loggerFactory.AddDebug();
 
-            app.UseMvc();
-
-            app.UseEventProcessor();
-
             ConfigureInternal(app, env);
+
+            app
+                .AddExceptionHandler()
+                .UseMvc()
+                .UseEventProcessor();
         }
     }
 }

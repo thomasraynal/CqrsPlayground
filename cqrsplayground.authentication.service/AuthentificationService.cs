@@ -30,16 +30,18 @@ namespace cqrsplayground.authentication.service
         
                 var creds = new SigningCredentials(_instance.ServiceKey, SecurityAlgorithms.HmacSha256);
 
+                var expiration = DateTime.UtcNow.AddMinutes(30);
+
                 var token = new JwtSecurityToken(
                     issuer: _instance.Issuer,
-                    expires: DateTime.Now.AddMinutes(30),
+                    expires: expiration,
                     signingCredentials: creds);
 
 
                 return new ServiceToken()
                 {
                     Token = new JwtSecurityTokenHandler().WriteToken(token),
-                    Expiration = token.ValidTo.Ticks,
+                    Expiration = expiration.Ticks,
                     InstanceId = _instance.Id,
                     Service = _instance.Key,
                 };

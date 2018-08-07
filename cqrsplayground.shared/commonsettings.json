@@ -7,10 +7,6 @@
     "booking": "booking",
     "trade": "trade"
   },
-  "services": {
-    "trades": "http://localhost:5000",
-    "events": "http://localhost:5672"
-  },
   "rabbitmq": {
     "username": "guest",
     "password": "guest",

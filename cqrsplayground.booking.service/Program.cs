@@ -11,7 +11,7 @@ namespace cqrsplayground.booking.service
         {
             var host = new WebHostBuilder()
                .UseKestrel()
-               .UseUrls(ServiceConstants.BookingServiceUrl)
+               .Setup(args)
                .UseStartup<Startup>()
                .Build();
 

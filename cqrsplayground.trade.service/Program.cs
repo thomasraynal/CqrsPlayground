@@ -3,6 +3,7 @@ using cqrsplayground.shared;
 using Microsoft.AspNetCore.Hosting;
 using System;
 using System.IO;
+using System.Threading;
 
 namespace cqrsplayground.trade.service
 {
@@ -12,11 +13,12 @@ namespace cqrsplayground.trade.service
         {
             var host = new WebHostBuilder()
                .UseKestrel()
-               .UseUrls(ServiceConstants.TradeServiceUrl)
+               .Setup(args)
                .UseStartup<Startup>()
                .Build();
 
             host.Run();
+
         }
     }
 }

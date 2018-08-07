@@ -27,11 +27,6 @@ namespace cqrsplayground.trade.service
         {
             var result = await _repository.Create(tradeCreationDemand);
 
-            var @event = new TradeCreated()
-            {
-                TradeId = result.TradeId
-            };
-
             return result;
         }
 

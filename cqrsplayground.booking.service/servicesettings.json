@@ -1,9 +1,4 @@
 ﻿{
-  "spring": {
-    "application": {
-      "name": "booking"
-    }
-  },
   "identity": {
     "key": "cqrsplayground.booking.service",
     "token": "__cqrsplayground.booking.service.token__"
@@ -17,9 +12,9 @@
     },
     "instance": {
       "appname": "booking",
-      "nonSecurePort": 5001,
-      "port": 5001,
-      "instanceId": "localhost:booking:5001",
+      "nonSecurePort": 5000,
+      "hostName": "localhost",
+      "port": 5000,
       "leaseRenewalIntervalInSeconds": 5,
       "leaseExpirationDurationInSeconds": 10
     }

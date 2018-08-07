@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\cqrsplayground.authentication.service\cqrsplayground.authentication.service.csproj" />
     <ProjectReference Include="..\cqrsplayground.shared\cqrsplayground.shared.csproj" />
   </ItemGroup>
 
