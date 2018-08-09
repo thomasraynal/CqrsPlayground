@@ -51,6 +51,8 @@ namespace cqrsplayground.gateway
             services.AddSingleton<IAuthenticatedClientProvider, AuthenticatedClientProvider>();
 
             services.AddDiscoveryClient(Configuration);
+
+            services.AddProxy();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -60,6 +62,8 @@ namespace cqrsplayground.gateway
 
             app.UseDiscoveryClient();
             app.UseMvc();
+
+            app.RunProxy();
         }
     }
 }

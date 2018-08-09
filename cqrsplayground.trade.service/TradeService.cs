@@ -22,27 +22,15 @@ namespace cqrsplayground.trade.service
     [Route("trades")]
     public class TradeService : ControllerBase, ITradeService
     {
-        private ILogger<TradeService> _logger;
         private ITradeEventProcessor _tradeEventProcessor;
         private ITradeService _repository;
-        private IAuthenticationService _authenticationService;
-        private IConfiguration _configuration;
-        private IServiceInstance _instance;
 
         public TradeService(
-            ILoggerFactory loggerFactory, 
-            ITradeService repository, 
-            IConfiguration configuration, 
-            IAuthenticationService auth,
-            IServiceInstance instance,
+            ITradeService repository,  
             ITradeEventProcessor tradeEventProcessor)
         {
-            _logger = loggerFactory.CreateLogger<TradeService>();
             _tradeEventProcessor = tradeEventProcessor;
             _repository = repository;
-            _authenticationService = auth;
-            _configuration = configuration;
-            _instance = instance;
         }
 
         [HttpPut]

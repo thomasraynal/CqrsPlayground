@@ -8,7 +8,7 @@ namespace cqrsplayground.shared
     public static class ServiceConstants
     {
         public static String TradeRepositoryUrl = "http://localhost:5003";
-        public static String TradeServiceGatewayUrl = "http://localhost:5004";
+        public static String ServiceGatewayUrl = "http://localhost:5004";
 
         public static String RabbitMQConfig = "rabbitmq";
         public static String TradeEventService = "trade";

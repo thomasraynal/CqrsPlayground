@@ -80,7 +80,7 @@ namespace cqrsplayground.generator
         {
             var provider = new AuthenticatedClientProvider();
 
-            var client = provider.GetClientFor<ITradeService>(Assembly.GetExecutingAssembly().FullName.Split(",").First(), ServiceConstants.TradeServiceGatewayUrl);
+            var client = provider.GetClientFor<ITradeService>(Assembly.GetExecutingAssembly().FullName.Split(",").First(), ServiceConstants.ServiceGatewayUrl, "trade");
 
             _rand = new Random();
 

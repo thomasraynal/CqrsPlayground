@@ -6,19 +6,19 @@ using System.Text;
 
 namespace cqrsplayground.gateway
 {
-    [Route("inventory")]
-    public class InventoryService : ControllerBase, IInventoryService
-    {
-        private IInventoryService _service;
+    //[Route("inventory")]
+    //public class InventoryService : ControllerBase, IInventoryService
+    //{
+    //    private IInventoryService _service;
 
-        public InventoryService(IInventoryService service)
-        {
-            _service = service;
-        }
+    //    public InventoryService(IInventoryService service)
+    //    {
+    //        _service = service;
+    //    }
 
-        public IEnumerable<InstanceInfo> GetRegisteredInstances()
-        {
-            return _service.GetRegisteredInstances();
-        }
-    }
+    //    public IEnumerable<InstanceInfo> GetRegisteredInstances()
+    //    {
+    //        return _service.GetRegisteredInstances();
+    //    }
+    //}
 }

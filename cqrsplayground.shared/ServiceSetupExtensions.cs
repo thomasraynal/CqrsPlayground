@@ -20,14 +20,14 @@ namespace cqrsplayground.shared
             return services;
         }
 
-        public static IServiceCollection AddAuthenticatedHttpClientFor<IService>(this IServiceCollection services, String targetServiceKey, String endpoint)
-            where IService: class
-        {
-            var provider = new AuthenticatedClientProvider();
-            var client = provider.GetClientFor<IService>(targetServiceKey, endpoint);
-            services.AddSingleton(client);
-            return services;
-        }
+        //public static IServiceCollection AddAuthenticatedHttpClientFor<IService>(this IServiceCollection services, String targetServiceKey, String endpoint)
+        //    where IService: class
+        //{
+        //    var provider = new AuthenticatedClientProvider();
+        //    var client = provider.GetClientFor<IService>(targetServiceKey, endpoint);
+        //    services.AddSingleton(client);
+        //    return services;
+        //}
 
         public static IApplicationBuilder AddExceptionHandler(this IApplicationBuilder app)
         {
