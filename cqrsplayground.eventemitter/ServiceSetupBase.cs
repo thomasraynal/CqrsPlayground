@@ -28,7 +28,6 @@ namespace cqrsplayground.eventemitter
 
         public void ConfigureServices(IServiceCollection services)
         {
-
             Configuration = (IConfiguration)services.First(service => service.ServiceType == typeof(IConfiguration)).ImplementationInstance;
 
             services

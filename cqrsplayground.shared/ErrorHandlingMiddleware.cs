@@ -10,7 +10,7 @@ namespace cqrsplayground.shared
 {
     public class ErrorHandlingMiddleware
     {
-        private readonly RequestDelegate next;
+        private RequestDelegate next;
 
         public ErrorHandlingMiddleware(RequestDelegate next)
         {

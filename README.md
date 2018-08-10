@@ -1,0 +1,1 @@
+An example of CQRS architecture using [RabbitMQ](https://github.com/rabbitmq/rabbitmq-dotnet-client) for event processing and [Eureka](https://github.com/Netflix/eureka) for the service layer. .NET Core 2.0 - [Steeltoe Eureka's client](https://github.com/SteeltoeOSS/Discovery) and [Refit](https://github.com/reactiveui/refit) as http client.

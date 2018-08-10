@@ -8,7 +8,7 @@ namespace cqrsplayground.shared
 {
     public static class WebHostBuilderExtensions
     {
-        public static IWebHostBuilder Setup(this IWebHostBuilder host, string[] args)
+        public static IWebHostBuilder Setup(this IWebHostBuilder webHost, string[] args)
         {
             var config = new ConfigurationBuilder()
                 .SetBasePath(AppContext.BaseDirectory)
@@ -17,9 +17,16 @@ namespace cqrsplayground.shared
                 .AddCommandLine(args)
                 .Build();
 
-            host.UseConfiguration(config);
 
-            return host.UseUrls($"{config["scheme"]}://{config["host"]}:{config["port"]}");
+            config["eureka:client:serviceUrl"] = config["gateway"];
+
+            var scheme = config["scheme"];
+            var host = config["eureka:instance:hostName"] = config["host"];
+            var port = config["eureka:instance:port"] = config["eureka:instance:nonSecurePort"] = config["port"];
+
+            webHost.UseConfiguration(config);
+
+            return webHost.UseUrls($"{scheme}://{host}:{port}");
         }
     }
 }

@@ -39,13 +39,14 @@ namespace cqrsplayground.booking.service
 
         public async override Task OnEvent(ITradeEvent @event)
         {
-            _logger.LogInformation($"Trade {@event.TradeId} has been booked");
 
             await Emit(new TradeBooked()
             {
                 TradeId = @event.TradeId,
                 TradeBook = _tradeBooks.Random()
             });
+
+            _logger.LogInformation($"Trade {@event.TradeId} has been booked");
 
         }
     }

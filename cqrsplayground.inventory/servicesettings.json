@@ -1,7 +1,6 @@
 ﻿{
   "eureka": {
     "client": {
-      "serviceUrl": "http://localhost:8080/eureka/v2",
       "shouldRegisterWithEureka": false,
       "shouldFetchRegistry": true,
       "registryFetchIntervalSeconds": 1

@@ -10,30 +10,18 @@ using Steeltoe.Common.Discovery;
 using Steeltoe.Discovery.Client;
 using Steeltoe.Discovery.Eureka;
 using Steeltoe.Discovery.Eureka.Transport;
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq;
 
 namespace cqrsplayground.gateway
 {
     public class Startup
     {
-        public IConfigurationRoot Configuration { get; }
-
-        public Startup(IHostingEnvironment env)
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("servicesettings.json", optional: false, reloadOnChange: true);
-
-            this.Configuration = builder.Build();
-        }
+        public IConfiguration Configuration { get; private set; }
 
         public void ConfigureServices(IServiceCollection services)
         {
+            Configuration = (IConfiguration)services.First(service => service.ServiceType == typeof(IConfiguration)).ImplementationInstance;
+
             services
                 .AddOptions()
                 .AddMvc()
@@ -46,7 +34,7 @@ namespace cqrsplayground.gateway
         
             services.AddTransient<IEurekaHttpClient, ServiceEurekaHttpClient>();
             services.AddTransient<IDiscoveryClient, EurekaDiscoveryClient>();
-            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton(Configuration);
             services.AddSingleton<IInventoryService,InventoryClient>();
             services.AddSingleton<IAuthenticatedClientProvider, AuthenticatedClientProvider>();
 

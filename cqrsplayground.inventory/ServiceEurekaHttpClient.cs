@@ -26,7 +26,7 @@ namespace cqrsplayground.gateway
         public ServiceEurekaHttpClient(IOptionsMonitor<EurekaClientOptions> config, ILoggerFactory logFactory = null)
         {
             _config = null;
-            _configOptions = config ?? throw new ArgumentNullException(nameof(config));
+            _configOptions = config;
 
             var handler = new HttpClientHandler()
             {

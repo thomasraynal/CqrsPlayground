@@ -11,7 +11,7 @@ namespace cqrsplayground.shared
 {
     public class AuthenticatedHttpClientHandler : HttpClientHandler
     {
-        private readonly Func<Task<ServiceToken>> getToken;
+        private Func<Task<ServiceToken>> getToken;
         private ServiceToken _current;
 
         public AuthenticatedHttpClientHandler(Func<Task<ServiceToken>> getToken)

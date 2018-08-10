@@ -10,6 +10,9 @@ namespace cqrsplayground.shared
         public static String TradeRepositoryUrl = "http://localhost:5003";
         public static String ServiceGatewayUrl = "http://localhost:5004";
 
+        public static String ServiceRealmHeader = "Realm";
+        public static String TradeRealm = "trade";
+
         public static String RabbitMQConfig = "rabbitmq";
         public static String TradeEventService = "trade";
         public static String BookingEventService = "booking";

@@ -5,16 +5,12 @@
   },
   "eureka": {
     "client": {
-      "serviceUrl": "http://localhost:8080/eureka/v2",
       "shouldRegisterWithEureka": true,
       "shouldFetchRegistry": false,
       "validate_certificates": false
     },
     "instance": {
       "appname": "booking",
-      "nonSecurePort": 5000,
-      "hostName": "localhost",
-      "port": 5000,
       "leaseRenewalIntervalInSeconds": 5,
       "leaseExpirationDurationInSeconds": 10
     }

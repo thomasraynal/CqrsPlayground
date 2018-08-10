@@ -34,28 +34,30 @@ namespace cqrsplayground.compliance
 
         public async override Task OnEvent(ITradeEvent @event)
         {
+            //process trade...
             await Task.Delay(1000);
 
             var isRejected = _rand.Next(0, 4) == 0;
 
             if (isRejected)
             {
-                _logger.LogInformation($"Trade {@event.TradeId} has been rejected");
-
                 await Emit(new TradeRejected()
                 {
                     TradeId = @event.TradeId
                 });
 
+                _logger.LogInformation($"Trade {@event.TradeId} has been rejected");
+
+
             }
             else
             {
-                _logger.LogInformation($"Trade {@event.TradeId} has been validated");
-
                 await Emit(new TradeValidated()
                 {
                     TradeId = @event.TradeId
                 });
+
+                _logger.LogInformation($"Trade {@event.TradeId} has been validated");
             }
         }
     }
